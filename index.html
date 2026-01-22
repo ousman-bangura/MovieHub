@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MovieHub</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>ActionMovieHub</h1>
+<nav>
+  <a href="#home">Home</a>
+  <a href="#movies">Movies</a>
+</nav>
+
+  <input id="search" class="search" placeholder="Search movies" />
+</header>
+
+<div id="home" class="hero">
+  <h2>Featured Action Movies</h2>
+  <p>Watch intresting Action movies. Watch and be entertained.</p>
+  <button onclick="openModal(movies[0])">▶ Play</button>
+</div>
+
+<section>
+  <h3>Popular Movies on MovieHub</h3>
+  <div id="movies" class="movies"></div>
+</section>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <h2 id="title"></h2>
+    <p id="desc"></p>
+    <video id="player" controls></video>
+  </div>
+</div>
+
+</body>
+</html>
