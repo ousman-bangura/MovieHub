@@ -1,3 +1,65 @@
+  let isLogin = true;
+
+function toggleAuthMode() {
+  isLogin = !isLogin;
+  document.getElementById("authTitle").innerText = isLogin ? "Login" : "Sign Up";
+  document.querySelector(".auth-box button").innerText = isLogin ? "Login" : "Sign Up";
+  document.getElementById("toggleAuth").innerHTML = isLogin
+    ? `Don’t have an account? <span onclick="toggleAuthMode()">Sign up</span>`
+    : `Already have an account? <span onclick="toggleAuthMode()">Login</span>`;
+}
+
+function handleAuth() {
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!username || !password) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem("users")) || {};
+
+  if (isLogin) {
+    if (!users[username] || users[username] !== password) {
+      alert("Invalid login credentials!");
+      return;
+    }
+    localStorage.setItem("loggedInUser", username);
+    closeAuth();
+  } else {
+    if (users[username]) {
+      alert("User already exists!");
+      return;
+    }
+    users[username] = password;
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Signup successful! You can now login.");
+    toggleAuthMode();
+  }
+}
+
+function closeAuth() {
+  document.getElementById("authContainer").style.display = "none";
+}
+
+function checkLogin() {
+  const user = localStorage.getItem("loggedInUser");
+  if (!user) {
+    document.getElementById("authContainer").style.display = "flex";
+  } else {
+    closeAuth();
+  }
+}
+
+checkLogin();
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  location.reload();
+}
+
+
 const movies = [
   {
     title: 'Action Movie',
@@ -138,6 +200,11 @@ function closeModal() {
   player.src = '';
   document.getElementById('modal').style.display = 'none';
 }
+
+function addToList(movie) {
+  alert(movie.title + " added to your list!");
+}
+
 
 search.addEventListener('input', () => {
   const v = search.value.toLowerCase();
