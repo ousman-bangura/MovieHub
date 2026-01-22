@@ -15,15 +15,38 @@
   <a href="#home">Home</a>
   <a href="#movies">Movies</a>
 </nav>
-
+  <button onclick="logout()" class="logout-btn">Logout</button>
   <input id="search" class="search" placeholder="Search movies" />
 </header>
 
-<div id="home" class="hero">
-  <h2>Featured Action Movies</h2>
-  <p>Watch intresting Action movies. Watch and be entertained.</p>
-  <button onclick="openModal(movies[0])">▶ Play</button>
+<div class="auth-container" id="authContainer">
+  <div class="auth-box">
+    <h2 id="authTitle">Login</h2>
+
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+
+    <button onclick="handleAuth()">Login</button>
+
+    <p id="toggleAuth">
+      Don’t have an account? <span onclick="toggleAuthMode()">Sign up</span>
+    </p>
+  </div>
 </div>
+
+
+<div id="home" class="hero">
+  <h2>🔥 Featured Action Movies</h2>
+  <p>
+    Explosive battles, fearless heroes, and heart-pounding chases — 
+    dive into the ultimate action experience. Stream the latest blockbusters 
+    and timeless classics anytime, anywhere.
+  </p>
+  <div class="hero-buttons">
+    <button onclick="openModal(movies[0])">▶ Play</button>
+  </div>
+</div>
+
 
 <section>
   <h3>Popular Movies on MovieHub</h3>
